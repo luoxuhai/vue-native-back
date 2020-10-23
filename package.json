@@ -1,0 +1,36 @@
+{
+  "name": "vue-native-back",
+  "version": "0.1.0",
+  "description": "使用返回键关闭模态框的 vue 插件",
+  "main": "dist/nativeBack.umd.js",
+  "private": false,
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "vue-router",
+    "native-back"
+  ],
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --dest demo",
+    "build:lib": "vue-cli-service build --target lib --name nativeBack src/plugin/nativeBack.js",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "vue": "^2.6.11",
+    "vuesax": "^4.0.1-alpha.24"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-vue": "^6.2.2",
+    "prettier": "^1.19.1",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
