@@ -1,4 +1,4 @@
-# vue-native-back [![NPM version](https://img.shields.io/npm/v/vue-timeago.svg)](https://npmjs.com/package/vue-native-back) [![NPM downloads](https://img.shields.io/npm/dm/vue-timeago.svg)](https://npmjs.com/package/vue-native-back)
+# vue-native-back [![NPM version](https://img.shields.io/npm/v/vue-native-back)](https://npmjs.com/package/vue-native-back) [![NPM downloads](https://img.shields.io/npm/dm/vue-native-back)](https://npmjs.com/package/vue-native-back) [![issues](https://img.shields.io/npm/l/vue-native-back)](https://github.com/luoxuhai/vue-native-back/blob/master/LICENSE)
 
 > 使用返回键关闭模态框的 vue 插件
 
@@ -61,7 +61,7 @@ createApp(App).use(NativeBack);
 
 ## Example
 
-See [src/](https://github.com/luoxuhai/vue-native-back/src)
+See [src/](https://github.com/luoxuhai/vue-native-back/blob/master/src)
 
 ## Options
 
@@ -88,4 +88,4 @@ npm run build:lib
 
 ## License
 
-[MIT](https://github.com/luoxuhai/vue-native-back/LICENSE.md)
+[MIT](https://github.com/luoxuhai/vue-native-back/blob/master/LICENSE)
