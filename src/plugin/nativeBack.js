@@ -1,7 +1,6 @@
-/* eslint-disable */
-
-let changeIndex = -1;
-
+/**
+ * Author: luoxuhai<2639415619@qq.com>(https://github.com/luoxuhai)
+ */
 const NativeBack = {
   install(app, options = { enable: true }) {
     if (!options.enable) return;
@@ -18,22 +17,23 @@ const NativeBack = {
           default: () => []
         }
       },
+      data() {
+        return {
+          changeKeys: []
+        };
+      },
       watch: {
         state(val, oldVal) {
           if (val.toString() === oldVal.toString()) return oldVal;
-          changeIndex = -1;
+          this.changeKeys = [];
           for (let i = 0; i <= val.length; i++) {
             if (val[i] !== oldVal[i]) {
-              changeIndex = i;
-              break;
+              if (val[i]) {
+                this.pushState(i);
+              } else {
+                this.popState();
+              }
             }
-          }
-          if (changeIndex >= 0 && val[changeIndex]) {
-            for (const _ of [null, null]) {
-              history.pushState("", null, `?_modal=${changeIndex}`);
-            }
-          } else if (changeIndex >= 0) {
-            history.back();
           }
         }
       },
@@ -47,10 +47,20 @@ const NativeBack = {
         window.removeEventListener("popstate", this.popstateListener);
       },
       methods: {
+        pushState(key) {
+          this.changeKeys.push(key);
+          window.history.pushState(null, null);
+          window.history.forward(1);
+        },
+        popState() {
+          this.changeKeys.pop();
+          window.history.back();
+        },
         popstateListener() {
-          if (changeIndex >= 0) {
-            this.closeMethods[changeIndex]();
-            changeIndex = -1;
+          const key = this.changeKeys.pop();
+          if (typeof key === "number") {
+            window.history.pushState(null, null);
+            this.closeMethods[key]();
           }
         }
       },

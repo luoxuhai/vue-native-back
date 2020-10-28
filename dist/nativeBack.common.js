@@ -859,8 +859,9 @@ var es_regexp_to_string = __webpack_require__("25f0");
 
 
 
-/* eslint-disable */
-var changeIndex = -1;
+/**
+ * Author: luoxuhai<2639415619@qq.com>(https://github.com/luoxuhai)
+ */
 var NativeBack = {
   install: function install(app) {
     var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
@@ -883,25 +884,24 @@ var NativeBack = {
           }
         }
       },
+      data: function data() {
+        return {
+          changeKeys: []
+        };
+      },
       watch: {
         state: function state(val, oldVal) {
           if (val.toString() === oldVal.toString()) return oldVal;
-          changeIndex = -1;
+          this.changeKeys = [];
 
           for (var i = 0; i <= val.length; i++) {
             if (val[i] !== oldVal[i]) {
-              changeIndex = i;
-              break;
+              if (val[i]) {
+                this.pushState(i);
+              } else {
+                this.popState();
+              }
             }
-          }
-
-          if (changeIndex >= 0 && val[changeIndex]) {
-            for (var _i = 0, _arr = [null, null]; _i < _arr.length; _i++) {
-              var _ = _arr[_i];
-              history.pushState("", null, "?_modal=".concat(changeIndex));
-            }
-          } else if (changeIndex >= 0) {
-            history.back();
           }
         }
       },
@@ -915,10 +915,21 @@ var NativeBack = {
         window.removeEventListener("popstate", this.popstateListener);
       },
       methods: {
+        pushState: function pushState(key) {
+          this.changeKeys.push(key);
+          window.history.pushState(null, null);
+          window.history.forward(1);
+        },
+        popState: function popState() {
+          this.changeKeys.pop();
+          window.history.back();
+        },
         popstateListener: function popstateListener() {
-          if (changeIndex >= 0) {
-            this.closeMethods[changeIndex]();
-            changeIndex = -1;
+          var key = this.changeKeys.pop();
+
+          if (typeof key === "number") {
+            window.history.pushState(null, null);
+            this.closeMethods[key]();
           }
         }
       },
@@ -953,4 +964,3 @@ module.exports = NATIVE_SYMBOL
 /***/ })
 
 /******/ });
-//# sourceMappingURL=nativeBack.common.js.map

@@ -1,9 +1,10 @@
 {
   "name": "vue-native-back",
-  "version": "0.1.0",
+  "version": "0.1.5",
   "description": "使用返回键关闭模态框的 vue 插件",
   "main": "dist/nativeBack.umd.js",
   "private": false,
+  "author": "luoxuhai <2639415619@qq.com> (https://github.com/luoxuhai)",
   "license": "MIT",
   "keywords": [
     "vue",
