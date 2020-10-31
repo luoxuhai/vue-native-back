@@ -50,7 +50,6 @@ const NativeBack = {
         pushState(key) {
           this.changeKeys.push(key);
           window.history.pushState(null, null);
-          window.history.forward();
         },
         popState() {
           this.changeKeys.pop();
@@ -58,7 +57,7 @@ const NativeBack = {
         },
         popstateListener() {
           const key = this.changeKeys.pop();
-          if (typeof key === "number") {
+          if (key >= 0) {
             window.history.pushState(null, null);
             this.closeMethods[key]();
           }
